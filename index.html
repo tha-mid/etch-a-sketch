@@ -13,7 +13,25 @@
     </div>
 
     <div class="content">
-        <div id="tools"></div>
+        <div id="tools">
+            <h2>Tools</h2>
+            <div id="penColor">
+                <label for="penCol">Pen color</label><br>
+                <input type="color" id = "penCol" value="#000000">
+            </div>
+            <div id="backColor">
+                <label for="backCol">Background color</label><br>
+                <input type="color" id = "backCol" value="#FFFFFF">
+                <div id="applyBackColor">Apply</div>
+            </div>
+            <div id="rainbow"></div>
+            <div id="eraser"></div>
+            <div id="clear"></div>
+            <div>
+                <p id="gridVal">Grid 50x50</p> <br>
+                <input type="range" min="1" max="100" value="50" class="slider" id="gridSize">
+            </div>
+        </div>
         <div id="grid"></div>
     </div>
 
