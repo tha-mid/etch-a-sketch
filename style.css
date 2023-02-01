@@ -27,7 +27,7 @@ body {
     background-color: white;
 }
 
-#applyBackColor {
+#applyBackColor, #pen, #eraser, #rainbow, #fade {
     display: flex;
     justify-content: center;
     border-style: solid;
@@ -49,7 +49,9 @@ body {
 }
 
 .active{
-    background-color: aqua;
+}
+
+.cell {
 }
 
 .header h1 {

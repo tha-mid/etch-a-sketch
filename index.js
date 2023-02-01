@@ -5,17 +5,6 @@
 //clear
 //grid size
 
-let gridStart = 50;
-
-for (let i = 0; i < (gridStart * gridStart); i++) {
-    let div = document.createElement("div");
-
-    document.getElementById("grid").appendChild(div);
-}
-
-document.getElementById("grid").style.gridTemplateColumns = "repeat("+ gridStart + ", 1fr)";
-document.getElementById("grid").style.gridTemplateRows = "repeat("+ gridStart + ", 1fr)"
-
 let gridSize = document.getElementById("gridSize");
 
 function onChange() {
@@ -29,6 +18,7 @@ function onChange() {
     
     for (let i = 0; i < (val * val); i++) {
         let div = document.createElement("div");
+        div.classList.add("cell");
         
         div.style.backgroundColor = backColor;
         document.getElementById("grid").appendChild(div);
@@ -51,6 +41,20 @@ var output = document.getElementById("gridVal");
 slider.oninput = function() {
     output.innerHTML = 'Grid ' + this.value + 'x' + this.value;
 }
+
+/////////
+let eraser = true;
+
+document.getElementById("eraser").addEventListener("click", function() {
+
+    eraser = false;
+
+})
+
+document.getElementById("pen").addEventListener("click", function() {
+    eraser = true;
+    //console.log('teste');
+})
 
 
 /////////
@@ -77,15 +81,28 @@ function disableToggle() {
 
 function paint(e) {
 
-    let color = document.getElementById("penCol").value;
-
     if (isToggling === false) {
         return;
     }
+    //console.log('eraser = ' + eraser)
+    let color;
+
+    if (eraser) { 
+        //console.log('a');
+        color = document.getElementById("penCol").value;
+        e.target.classList.remove('cell');
+        e.target.classList.add('active');
+    } else {
+        color = document.getElementById("backCol").value;
+        e.target.classList.remove('active');
+        e.target.classList.add('cell');
+
+    }
+
+    
 
     //console.log('active');
 
-    //e.target.classList.add('active');
     e.target.style.backgroundColor = color;
 }
 
@@ -99,4 +116,20 @@ function start() {
     grid.onmouseup = disableToggle;
 }
 
+onChange();
 start();
+
+////////
+
+document.getElementById("applyBackColor").addEventListener("click", function() {
+
+    let cel = document.getElementsByClassName("cell");
+
+    for(let i = 0; i < cel.length; i++) {
+        cel[i].style.backgroundColor = document.getElementById("backCol").value;
+    }
+    
+})
+
+////////
+
