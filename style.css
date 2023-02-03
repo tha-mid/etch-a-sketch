@@ -27,7 +27,7 @@ body {
     background-color: white;
 }
 
-#applyBackColor, #pen, #eraser, #rainbow, #fade {
+#applyBackColor, #pen, #eraser, #rainbow, #shade, #clear {
     display: flex;
     justify-content: center;
     border-style: solid;

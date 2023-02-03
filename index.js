@@ -9,8 +9,6 @@ let gridSize = document.getElementById("gridSize");
 
 function onChange() {
 
-    console.log('Entrou');
-
     document.getElementById("grid").replaceChildren();
 
     let val = gridSize.value;
@@ -43,19 +41,27 @@ slider.oninput = function() {
 }
 
 /////////
-let eraser = true;
+let mouse = 'pen';
 
 document.getElementById("eraser").addEventListener("click", function() {
-
-    eraser = false;
-
-})
+    mouse = 'eraser';
+});
 
 document.getElementById("pen").addEventListener("click", function() {
-    eraser = true;
-    //console.log('teste');
-})
+    mouse = 'pen';
+});
 
+document.getElementById("rainbow").addEventListener("click", function() {
+    mouse = 'rainbow';
+});
+
+document.getElementById("shade").addEventListener("click", function() {
+    mouse = 'shade';
+});
+
+document.getElementById("clear").addEventListener("click", function() {
+    onChange();
+});
 
 /////////
 
@@ -65,8 +71,8 @@ let isToggling = false;
 
 function enableToggle(e) {
     
-    //console.log('enableToggle');
     isToggling = true;
+    count = 1;
 
     if (e.target !== grid) {
         paint(e);
@@ -74,8 +80,6 @@ function enableToggle(e) {
 }
 
 function disableToggle() {
-
-    //console.log("disableToggle");
     isToggling = false;
 }
 
@@ -84,27 +88,69 @@ function paint(e) {
     if (isToggling === false) {
         return;
     }
-    //console.log('eraser = ' + eraser)
-    let color;
 
-    if (eraser) { 
-        //console.log('a');
+    let color;
+    let r;
+    let g;
+    let b;
+
+    if (mouse === 'pen') { 
         color = document.getElementById("penCol").value;
         e.target.classList.remove('cell');
         e.target.classList.add('active');
-    } else {
+
+    } else if (mouse === 'eraser') {
         color = document.getElementById("backCol").value;
         e.target.classList.remove('active');
         e.target.classList.add('cell');
 
+    } else if (mouse === 'rainbow') {
+        r = Math.floor(Math.random() * 256);
+        g = Math.floor(Math.random() * 256);
+        b = Math.floor(Math.random() * 256);
+        color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+        e.target.classList.remove('cell');
+        e.target.classList.add('active');
+
+    } else if (mouse === 'shade') {
+
+        color = document.getElementById("penCol").value;
+        
+        let m = color.match(/^#?([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i);
+           
+        r = parseInt(m[1], 16);
+        g = parseInt(m[2], 16);
+        b = parseInt(m[3], 16);
+
+        if (count === 1) {
+            color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+        } else {
+            r = Math.round(r - (r * (count / 10)));
+            g = Math.round(g - (g * (count / 10)));
+            b = Math.round(b - (b * (count / 10)));
+
+            if (r <= 0) {r = 0};
+            if (g <= 0) {g = 0};
+            if (b <= 0) {b = 0};
+
+            color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+        
+        }
+
+        count++;
+
+        if (count > 10) {
+            count = 1;
+        }
+
+        e.target.classList.remove('cell');
+        e.target.classList.add('active');    
     }
-
-    
-
-    //console.log('active');
 
     e.target.style.backgroundColor = color;
 }
+
+let count = 1;
 
 function start() {
     grid.onmousedown = enableToggle;
