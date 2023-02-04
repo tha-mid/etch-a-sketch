@@ -45,18 +45,34 @@ let mouse = 'pen';
 
 document.getElementById("eraser").addEventListener("click", function() {
     mouse = 'eraser';
+    document.getElementById("eraser").classList.replace("buttons", "buttonActive");
+    document.getElementById("pen").classList.replace("buttonActive", "buttons");
+    document.getElementById("rainbow").classList.replace("buttonActive", "buttons");
+    document.getElementById("shade").classList.replace("buttonActive", "buttons");
 });
 
 document.getElementById("pen").addEventListener("click", function() {
     mouse = 'pen';
+    document.getElementById("pen").classList.replace("buttons", "buttonActive");
+    document.getElementById("eraser").classList.replace("buttonActive", "buttons");
+    document.getElementById("rainbow").classList.replace("buttonActive", "buttons");
+    document.getElementById("shade").classList.replace("buttonActive", "buttons");
 });
 
 document.getElementById("rainbow").addEventListener("click", function() {
     mouse = 'rainbow';
+    document.getElementById("rainbow").classList.replace("buttons", "buttonActive");
+    document.getElementById("pen").classList.replace("buttonActive", "buttons");
+    document.getElementById("eraser").classList.replace("buttonActive", "buttons");
+    document.getElementById("shade").classList.replace("buttonActive", "buttons");
 });
 
 document.getElementById("shade").addEventListener("click", function() {
     mouse = 'shade';
+    document.getElementById("shade").classList.replace("buttons", "buttonActive");
+    document.getElementById("pen").classList.replace("buttonActive", "buttons");
+    document.getElementById("eraser").classList.replace("buttonActive", "buttons");
+    document.getElementById("rainbow").classList.replace("buttonActive", "buttons");
 });
 
 document.getElementById("clear").addEventListener("click", function() {

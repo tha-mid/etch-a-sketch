@@ -4,11 +4,18 @@
     <meta charset='utf-8'>
     <title>Etch-a-Sketch</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" type="image/x-icon" href="./images/pencil.ico">
+
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aleo&display=swap" rel="stylesheet">
     
 </head>
 <body>
     <div class="header">
+        <img src="./images/pencil.png" alt="Pencil logo" class="logo">
         <h1>Etch-a-Sketch</h1>
     </div>
 
@@ -16,21 +23,21 @@
         <div id="tools">
             <h2>Tools</h2>
             <div id="penColor">
-                <div id="pen">Pencil</div>
-                <label for="penCol">Pen color</label><br>
+                <label for="penCol">Pencil color</label>
                 <input type="color" id = "penCol" value="#000000">
+                <button class="buttons" id="pen">Pencil</button>
             </div>
             <div id="backColor">
-                <label for="backCol">Background color</label><br>
+                <label for="backCol">Background color</label>
                 <input type="color" id = "backCol" value="#FFFFFF">
-                <div id="applyBackColor">Apply</div>
+                <button class="buttons" id="applyBackColor">Apply</button>
             </div>
-            <div id="rainbow">Rainbow</div>
-            <div id="shade">Shade</div>
-            <div id="eraser">Eraser</div>
-            <div id="clear">Clear</div>
-            <div>
-                <p id="gridVal">Grid 50x50</p> <br>
+            <button class="buttons" id="rainbow">Rainbow</button>
+            <button class="buttons" id="shade">Shade</button>
+            <button class="buttons" id="eraser">Eraser</button>
+            <button class="buttons" id="clear">Clear</button>
+            <div class="setGrid">
+                <p id="gridVal">Grid 50x50</p>
                 <input type="range" min="1" max="100" value="50" class="slider" id="gridSize">
             </div>
         </div>
@@ -38,6 +45,8 @@
     </div>
 
     <div class="footer">
+        <p class="credit">The Odin Project 2023 - tha_mid</p>
+        <a href="https://github.com/tha-mid" target="_blank"><img class = "github" src="./images/github.png" alt="GitHub logo"></a> 
     </div>
     <script src='index.js'></script>
 </body>
