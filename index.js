@@ -28,7 +28,6 @@ function onChange() {
     start();
 }
 
-
 gridSize.onchange = onChange;
 
 /////////
@@ -82,8 +81,10 @@ document.getElementById("clear").addEventListener("click", function() {
 /////////
 
 let grid = document.getElementById("grid");
+let body = document.getElementById("bodyContent");
 let cel = grid.getElementsByTagName("div");
 let isToggling = false;
+let count = 1;
 
 function enableToggle(e) {
     
@@ -91,7 +92,7 @@ function enableToggle(e) {
     count = 1;
 
     if (e.target !== grid) {
-        paint(e);
+        paint(e); 
     }
 }
 
@@ -106,9 +107,9 @@ function paint(e) {
     }
 
     let color;
-    let r;
-    let g;
-    let b;
+    let r = 0;
+    let g = 0;
+    let b = 0;
 
     if (mouse === 'pen') { 
         color = document.getElementById("penCol").value;
@@ -166,15 +167,16 @@ function paint(e) {
     e.target.style.backgroundColor = color;
 }
 
-let count = 1;
+
 
 function start() {
     grid.onmousedown = enableToggle;
-
+    
     for (let i = 0, il = cel.length; i < il; i++) {
         cel[i].onmouseenter = paint;
     }
 
+    body.onmouseup = disableToggle;
     grid.onmouseup = disableToggle;
 }
 
